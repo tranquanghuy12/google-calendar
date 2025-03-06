@@ -17,7 +17,7 @@ interface DateStoreType {
 }
 
 export type CalendarEventType = {
-  id: string;
+  id: number;
   title: string;
   date: dayjs.Dayjs;
   description: string;
