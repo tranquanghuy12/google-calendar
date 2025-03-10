@@ -54,7 +54,7 @@ export async function createEvent(
     !description ||
     !date ||
     !time ||
-    (recurringRule?.frequency !== " " && !recurringRule?.count)
+    (recurringRule?.frequency !== " " && recurringRule?.count === 0)
   ) {
     return { error: "All fields are required" };
   }

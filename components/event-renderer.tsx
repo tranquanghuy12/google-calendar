@@ -10,7 +10,7 @@ type EventRendererProps = {
 };
 
 export function EventRenderer({ date, view, events }: EventRendererProps) {
-  const { openEventSummary } = useEventStore();
+  const { openEventSummary, openListEvent } = useEventStore();
 
   const filteredEvents = events.filter((event: CalendarEventType) => {
     if (view === "month") {
@@ -22,7 +22,7 @@ export function EventRenderer({ date, view, events }: EventRendererProps) {
 
   return (
     <>
-      {filteredEvents.map((event) => (
+      {filteredEvents?.slice(0, view === "month" ? 4 : 1)?.map((event) => (
         <div
           key={event.id}
           onClick={(e) => {
@@ -36,6 +36,20 @@ export function EventRenderer({ date, view, events }: EventRendererProps) {
           </div>
         </div>
       ))}
+      {filteredEvents.length > (view === "month" ? 4 : 1) && (
+        <div
+          // key={event.id}
+          onClick={(e) => {
+            e.stopPropagation();
+            openListEvent(filteredEvents);
+          }}
+          className="w-full"
+        >
+          <div className="line-clamp-1 w-[90%] cursor-pointer rounded-sm bg-gray-600 p-1 text-sm text-white">
+            + {filteredEvents.length - (view === "month" ? 4 : 1)} more
+          </div>
+        </div>
+      )}
     </>
   );
 }

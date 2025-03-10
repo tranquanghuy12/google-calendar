@@ -13,6 +13,7 @@ import EventPopover from "./event-popover";
 import { EventSummaryPopover } from "./event-summary-popover";
 import { useEffect } from "react";
 import dayjs from "dayjs";
+import { EventRendererPopover } from "./event-renderer-popover";
 
 export default function MainView({
   eventsData,
@@ -28,6 +29,9 @@ export default function MainView({
     closeEventSummary,
     selectedEvent,
     setEvents,
+    isListEventOpen,
+    closeListEvent,
+    events,
   } = useEventStore();
 
   const { userSelectedDate } = useDateStore();
@@ -70,6 +74,13 @@ export default function MainView({
           isOpen={isEventSummaryOpen}
           onClose={closeEventSummary}
           event={selectedEvent}
+        />
+      )}
+
+      {isListEventOpen && (
+        <EventRendererPopover
+          isOpen={isListEventOpen}
+          onClose={closeListEvent}
         />
       )}
     </div>
