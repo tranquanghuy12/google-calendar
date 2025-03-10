@@ -4,7 +4,6 @@ import dayjs from "dayjs";
 import React from "react";
 import { EventRenderer } from "./event-renderer";
 
-
 export default function MonthViewBox({
   day,
   rowIndex,
@@ -48,9 +47,8 @@ export default function MonthViewBox({
         )}
         <h4
           className={cn(
-            "text-center text-sm",
-            isToday &&
-              "flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-white",
+            "flex h-8 w-8 items-center justify-center rounded-full text-center text-sm",
+            isToday && "bg-blue-600 text-white",
           )}
         >
           {isFirstDayOfMonth ? day.format("MMM D") : day.format("D")}

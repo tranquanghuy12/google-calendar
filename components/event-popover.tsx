@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useTransition } from "react";
+import React, { useRef, useState, useTransition } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import dayjs from "dayjs";
@@ -13,6 +13,13 @@ import { FiClock } from "react-icons/fi";
 import AddTime from "./add-time";
 import { createEvent } from "@/app/actions/event-actions";
 import { cn } from "@/lib/utils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 interface EventPopoverProps {
   isOpen: boolean;
@@ -20,35 +27,35 @@ interface EventPopoverProps {
   date: string;
 }
 
-export default function EventPopover({
-  isOpen,
-  onClose,
-  date,
-}: EventPopoverProps) {
+export default function EventPopover({ onClose, date }: EventPopoverProps) {
   const popoverRef = useRef<HTMLDivElement>(null);
   const [selectedTime, setSelectedTime] = useState("00:00");
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        popoverRef.current &&
-        !popoverRef.current.contains(event.target as Node)
-      ) {
-        onClose();
-      }
-    };
+  const [selectedRecurringType, setSelectedRecurringType] =
+    useState<string>(" ");
+  const [numOfRepetitions, setNumOfRepetitions] = useState("");
 
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (
+  //       popoverRef.current &&
+  //       !popoverRef.current.contains(event.target as Node)
+  //     ) {
+  //       onClose();
+  //     }
+  //   };
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen, onClose]);
+  //   if (isOpen) {
+  //     document.addEventListener("mousedown", handleClickOutside);
+  //   }
+
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [isOpen, onClose]);
 
   const handleClose = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -59,9 +66,50 @@ export default function EventPopover({
     e.stopPropagation();
   };
 
-  async function onSubmit(formData: FormData) {
+  // async function onSubmit(formData: FormData) {
+  //   setError(null);
+  //   setSuccess(null);
+  //   startTransition(async () => {
+  //     try {
+  //       const result = await createEvent(formData);
+  //       if ("error" in result) {
+  //         setError(result.error);
+  //       } else if (result.success) {
+  //         setSuccess(result.success);
+  //         setTimeout(() => {
+  //           onClose();
+  //         }, 2000);
+  //       }
+  //     } catch {
+  //       setError("An unexpected error occurred. Please try again.");
+  //     }
+  //   });
+  // }
+
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault(); // Prevents the default form submission
+
     setError(null);
     setSuccess(null);
+
+    const formData = new FormData(event.currentTarget); // Extract form data
+
+    const recurringType = selectedRecurringType;
+    const isRecurring = recurringType !== " ";
+
+    formData.append("isRecurring", String(isRecurring));
+
+    if (isRecurring) {
+      formData.append(
+        "recurringRule",
+        JSON.stringify({
+          frequency: recurringType,
+          interval: 1,
+          count: Number(numOfRepetitions),
+        }),
+      );
+    }
+
     startTransition(async () => {
       try {
         const result = await createEvent(formData);
@@ -100,7 +148,7 @@ export default function EventPopover({
             <IoCloseSharp className="h-4 w-4" />
           </Button>
         </div>
-        <form className="space-y-4 p-6" action={onSubmit}>
+        <form className="space-y-4 p-6" onSubmit={onSubmit}>
           <div>
             <Input
               type="text"
@@ -129,6 +177,33 @@ export default function EventPopover({
               <input type="hidden" name="date" value={date} />
               <input type="hidden" name="time" value={selectedTime} />
             </div>
+          </div>
+
+          <div className="flex items-center space-x-3">
+            <Select onValueChange={(v) => setSelectedRecurringType(v)}>
+              <SelectTrigger className="w-full focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0">
+                <SelectValue placeholder="No repeat" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value=" ">No repeat</SelectItem>
+                <SelectItem value="daily">Daily</SelectItem>
+                <SelectItem value="weekly">Weekly</SelectItem>
+                <SelectItem value="monthly">Monthly</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Input
+              type="text"
+              name="count"
+              placeholder="Number of repetitions"
+              className={cn(
+                // "w-full rounded-lg border-0 bg-slate-100 pl-7 placeholder:text-slate-600",
+                "focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0",
+              )}
+              value={numOfRepetitions}
+              disabled={selectedRecurringType === " "}
+              onChange={(e) => setNumOfRepetitions(e.target.value)}
+            />
           </div>
 
           <div className="flex items-center space-x-3">

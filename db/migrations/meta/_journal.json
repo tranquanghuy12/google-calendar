@@ -8,6 +8,13 @@
       "when": 1728302488757,
       "tag": "0000_blue_alice",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1741537667248,
+      "tag": "0001_fix_recurring_relation",
+      "breakpoints": true
     }
   ]
 }

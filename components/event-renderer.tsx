@@ -29,9 +29,11 @@ export function EventRenderer({ date, view, events }: EventRendererProps) {
             e.stopPropagation();
             openEventSummary(event);
           }}
-          className="line-clamp-1 w-[90%] cursor-pointer rounded-sm bg-green-700 p-1 text-sm text-white"
+          className="w-full"
         >
-          {event.title}
+          <div className="line-clamp-1 w-[90%] cursor-pointer rounded-sm bg-green-700 p-1 text-sm text-white">
+            {event.title}
+          </div>
         </div>
       ))}
     </>

@@ -21,6 +21,15 @@ export type CalendarEventType = {
   title: string;
   date: dayjs.Dayjs;
   description: string;
+  isRecurring: boolean;
+  recurringRule: RecurringRuleType;
+};
+
+export type RecurringRuleType = {
+  frequency: " " | "daily" | "weekly" | "monthly"; // Tần suất lặp lại
+  interval?: number | null; // Khoảng cách giữa các lần lặp (mặc định là 1)
+  count?: number | null; // Số lần lặp lại
+  until?: string | null; // Ngày kết thúc (chuỗi ngày ISO 8601: "2025-12-31T23:59:59Z")
 };
 
 type EventStore = {
