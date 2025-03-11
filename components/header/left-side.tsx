@@ -72,7 +72,7 @@ export default function HeaderLeft() {
       <div className="hidden items-center lg:flex">
         <Button
           variant="ghost"
-          className="rounded-full p-2"
+          className="rounded-full p-2 text-primary"
           onClick={() => setSideBarOpen()}
         >
           <Menu className="size-6" />
@@ -87,24 +87,28 @@ export default function HeaderLeft() {
       </div>
 
       {/* Today Button */}
-      <Button variant="outline" onClick={handleTodayClick}>
+      <Button
+        className="!border-primary-soft rounded-lg text-primary"
+        variant="outline"
+        onClick={handleTodayClick}
+      >
         Today
       </Button>
 
       {/* Navigation Controls */}
       <div className="flex items-center gap-3">
         <MdKeyboardArrowLeft
-          className="size-6 cursor-pointer font-bold"
+          className="text-primary-soft size-6 cursor-pointer font-bold"
           onClick={handlePrevClick}
         />
         <MdKeyboardArrowRight
-          className="size-6 cursor-pointer font-bold"
+          className="text-primary-soft size-6 cursor-pointer font-bold"
           onClick={handleNextClick}
         />
       </div>
 
       {/* Current Month and Year Display */}
-      <h1 className="hidden text-xl lg:block">
+      <h1 className="hidden text-xl font-semibold text-primary lg:block">
         {dayjs(new Date(dayjs().year(), selectedMonthIndex)).format(
           "MMMM YYYY",
         )}

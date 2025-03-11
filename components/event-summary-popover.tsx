@@ -22,7 +22,6 @@ export function EventSummaryPopover({
 }: EventSummaryPopoverProps) {
   const popoverRef = useRef<HTMLDivElement>(null);
   const { listEventOpen, openListEvent } = useEventStore();
-  console.log(listEventOpen);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -55,7 +54,7 @@ export function EventSummaryPopover({
     } catch (error) {
       console.log(error);
     }
-  }, [event?.id, onClose]);
+  }, [event?.id, onClose, listEventOpen, openListEvent]);
 
   if (!isOpen) return null;
 
@@ -91,7 +90,7 @@ export function EventSummaryPopover({
               <div className="mt-2 h-4 w-4 rounded-full bg-violet-500"></div>
             </div>
             <div className="flex flex-col gap-y-2">
-              <div className="text-2xl">{event.title}</div>
+              <div className="break-all text-2xl">{event.title}</div>
               <div className="text-md text-gray-600">
                 {dayjs(event.date).format("dddd, MMMM D, YYYY h:mm A")}
               </div>

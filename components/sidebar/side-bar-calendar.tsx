@@ -11,20 +11,20 @@ export default function SideBarCalendar() {
   // const weeksOfMonth = getWeeks(selectedMonthIndex);
 
   return (
-    <div className="my-6 p-2">
+    <div className="mb-6 p-2">
       <div className="flex items-center justify-between">
-        <h4 className="text-sm">
+        <h4 className="text-md font-semibold text-primary">
           {dayjs(new Date(dayjs().year(), selectedMonthIndex)).format(
             "MMMM YYYY",
           )}
         </h4>
         <div className="flex items-center gap-3">
           <MdKeyboardArrowLeft
-            className="size-5 cursor-pointer font-bold"
+            className="text-primary-soft size-6 cursor-pointer font-bold"
             onClick={() => setMonth(selectedMonthIndex - 1)}
           />
           <MdKeyboardArrowRight
-            className="size-5 cursor-pointer font-bold"
+            className="text-primary-soft size-6 cursor-pointer font-bold"
             onClick={() => setMonth(selectedMonthIndex + 1)}
           />
         </div>
@@ -65,7 +65,7 @@ export default function SideBarCalendar() {
                   className={cn(
                     "flex h-7 w-7 items-center justify-center rounded-full",
                     day.format("DD-MM-YY") === dayjs().format("DD-MM-YY") &&
-                      "bg-blue-600 text-white",
+                      "bg-primary text-white",
                   )}
                 >
                   <span>{day.format("D")}</span>

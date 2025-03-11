@@ -153,12 +153,12 @@ export default function EventPopover({ onClose, date }: EventPopoverProps) {
             <Input
               type="text"
               name="title"
-              placeholder="Add title"
+              placeholder="Title"
               className="my-4 rounded-none border-0 border-b text-2xl focus-visible:border-b-2 focus-visible:border-b-blue-600 focus-visible:ring-0 focus-visible:ring-offset-0"
             />
           </div>
           <div className="flex items-center justify-between">
-            <Button className="bg-blue-100 text-blue-700 hover:bg-blue-100 hover:text-blue-700">
+            <Button className="bg-blue-100 text-primary hover:bg-blue-100 hover:text-blue-700">
               Event
             </Button>
             <Button type="button" variant="ghost">
@@ -211,7 +211,7 @@ export default function EventPopover({ onClose, date }: EventPopoverProps) {
             <Input
               type="text"
               name="guests"
-              placeholder="Add guests"
+              placeholder="Guests"
               className={cn(
                 "w-full rounded-lg border-0 bg-slate-100 pl-7 placeholder:text-slate-600",
                 "focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0",
@@ -224,7 +224,7 @@ export default function EventPopover({ onClose, date }: EventPopoverProps) {
             <Input
               type="text"
               name="description"
-              placeholder="Add description"
+              placeholder="Description"
               className={cn(
                 "w-full rounded-lg border-0 bg-slate-100 pl-7 placeholder:text-slate-600",
                 "focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0",
@@ -251,7 +251,11 @@ export default function EventPopover({ onClose, date }: EventPopoverProps) {
           </div>
 
           <div className="flex justify-end space-x-2">
-            <Button type="submit" disabled={isPending}>
+            <Button
+              className="hover:bg-primary-soft"
+              type="submit"
+              disabled={isPending}
+            >
               {isPending ? "Saving..." : "Save"}
             </Button>
           </div>

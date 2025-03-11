@@ -48,8 +48,13 @@ export function EventRendererPopover({
               }}
               className="w-full"
             >
-              <div className="line-clamp-1 w-[90%] cursor-pointer rounded-sm bg-green-700 p-1 text-sm text-white">
-                {event.title}
+              <div
+                className={`${event?.isRecurring ? "bg-secondary text-primary" : "bg-primary-soft text-white"} line-clamp-1 flex w-[90%] cursor-pointer rounded-sm text-sm`}
+              >
+                <div
+                  className={`${event?.isRecurring ? "bg-primary-soft" : "bg-secondary"} w-[3px]`}
+                ></div>
+                <p className="p-1">{event.title}</p>
               </div>
             </div>
           ))}

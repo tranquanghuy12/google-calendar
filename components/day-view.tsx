@@ -6,7 +6,6 @@ import { ScrollArea } from "./ui/scroll-area";
 import { getHours, isCurrentDay } from "@/lib/getTime";
 import { EventRenderer } from "./event-renderer";
 
-
 export default function DayView() {
   const [currentTime, setCurrentTime] = useState(dayjs());
   const { openPopover, events } = useEventStore();
@@ -27,16 +26,16 @@ export default function DayView() {
       <div className="grid grid-cols-[auto_auto_1fr] px-4">
         <div className="w-16 border-r border-gray-300 text-xs">GMT +2</div>
         <div className="flex w-16 flex-col items-center">
-          <div className={cn("text-xs", isToday && "text-blue-600")}>
+          <div className={cn("text-xs", isToday && "text-primary")}>
             {userSelectedDate.format("ddd")}{" "}
           </div>{" "}
           <div
             className={cn(
               "h-12 w-12 rounded-full p-2 text-2xl",
-              isToday && "bg-blue-600 text-white",
+              isToday && "bg-primary text-white",
             )}
           >
-            {userSelectedDate.format("DD")}{" "}
+            <p className="text-center">{userSelectedDate.format("DD")} </p>
           </div>
         </div>
         <div></div>

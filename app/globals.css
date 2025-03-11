@@ -72,3 +72,91 @@ html,
 body {
   scrollbar-width: none; /* Hide scrollbar */
 }
+
+:root {
+  --color-primary: 15 76 129;
+  /* bg-sky-600 */
+  --color-primary-soft: 86 132 174;
+  /* bg-sky-100 */
+  --color-secondary: 249 175 98;
+  --color-secondary-soft: 255 228 200;
+  /* bg-slate-100 */
+  --color-bgbody: 228 246 237;
+}
+
+.bg-body {
+  --tw-bg-opacity: 1;
+  background-color: rgb(var(--color-bgbody) / var(--tw-bg-opacity));
+}
+
+.bg-primary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(var(--color-primary) / var(--tw-bg-opacity));
+}
+
+.bg-primary-soft {
+  --tw-bg-opacity: 1;
+  background-color: rgb(var(--color-primary-soft) / var(--tw-bg-opacity));
+}
+
+.bg-secondary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(var(--color-secondary) / var(--tw-bg-opacity));
+}
+
+.bg-secondary-soft {
+  --tw-bg-opacity: 1;
+  background-color: rgb(var(--color-secondary-soft) / var(--tw-bg-opacity));
+}
+
+.hover\:bg-primary:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(var(--color-primary) / var(--tw-bg-opacity));
+}
+
+.hover\:bg-primary-soft:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(var(--color-primary-soft) / var(--tw-bg-opacity));
+}
+
+.hover\:bg-secondary:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(var(--color-secondary) / var(--tw-bg-opacity));
+}
+
+.hover\:bg-secondary-soft:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(var(--color-secondary-soft) / var(--tw-bg-opacity));
+}
+
+.text-primary {
+  --tw-text-opacity: 1;
+  color: rgb(var(--color-primary) / var(--tw-text-opacity));
+}
+
+.text-primary-soft {
+  --tw-text-opacity: 1;
+  color: rgb(var(--color-primary-soft) / var(--tw-text-opacity));
+}
+
+.text-secondary {
+  --tw-text-opacity: 1;
+  color: rgb(var(--color-secondary) / var(--tw-text-opacity));
+}
+
+.text-secondary-soft {
+  --tw-text-opacity: 1;
+  color: rgb(var(--color-secondary-soft) / var(--tw-text-opacity));
+}
+
+.\!border-primary {
+  --tw-bg-opacity: 1;
+  border-color: rgb(var(--color-primary) / var(--tw-bg-opacity)) !important;
+}
+
+.\!border-primary-soft {
+  --tw-bg-opacity: 1;
+  border-color: rgb(
+    var(--color-primary-soft) / var(--tw-bg-opacity)
+  ) !important;
+}

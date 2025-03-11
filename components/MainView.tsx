@@ -51,11 +51,11 @@ export default function MainView({
   }, [eventsData, setEvents]);
 
   return (
-    <div className="flex">
+    <div className="flex gap-6 px-6">
       {/* SideBar */}
       <SideBar />
 
-      <div className="w-full flex-1">
+      <div className="w-full flex-1 rounded-md bg-white">
         {selectedView === "month" && <MonthView />}
         {selectedView === "week" && <WeekView />}
         {selectedView === "day" && <DayView />}

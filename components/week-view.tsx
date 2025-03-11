@@ -6,7 +6,6 @@ import React, { useEffect, useState } from "react";
 import { ScrollArea } from "./ui/scroll-area";
 import { EventRenderer } from "./event-renderer";
 
-
 export default function WeekView() {
   const [currentTime, setCurrentTime] = useState(dayjs());
   const { openPopover, events } = useEventStore();
@@ -33,16 +32,16 @@ export default function WeekView() {
 
         {getWeekDays(userSelectedDate).map(({ currentDate, today }, index) => (
           <div key={index} className="flex flex-col items-center">
-            <div className={cn("text-xs", today && "text-blue-600")}>
+            <div className={cn("text-xs", today && "text-primary")}>
               {currentDate.format("ddd")}
             </div>
             <div
               className={cn(
                 "h-12 w-12 rounded-full p-2 text-2xl",
-                today && "bg-blue-600 text-white",
+                today && "bg-primary text-white",
               )}
             >
-              {currentDate.format("DD")}{" "}
+              <p className="text-center">{currentDate.format("DD")} </p>
             </div>
           </div>
         ))}

@@ -83,7 +83,7 @@ export default async function Home() {
   const dbEvents = await getEventsData();
 
   return (
-    <div className="">
+    <div className="bg-body">
       <Header />
       <MainView eventsData={dbEvents as unknown as CalendarEventType[]} />
     </div>

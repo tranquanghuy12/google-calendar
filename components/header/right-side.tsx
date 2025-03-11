@@ -7,17 +7,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Avatar, AvatarFallback } from "../ui/avatar";
+// import { Avatar, AvatarFallback } from "../ui/avatar";
 import { useViewStore } from "@/lib/store";
 
 export default function HeaderRight() {
   const { setView } = useViewStore();
 
   return (
-    <div className="flex items-center space-x-4">
+    <div className="mr-3 flex items-center space-x-4">
       {/* <SearchComponent /> */}
       <Select onValueChange={(v) => setView(v)}>
-        <SelectTrigger className="w-24 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0">
+        <SelectTrigger className="!border-primary-soft w-24 rounded-lg bg-white text-primary focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0">
           <SelectValue placeholder="Month" />
         </SelectTrigger>
         <SelectContent>
@@ -27,10 +27,10 @@ export default function HeaderRight() {
         </SelectContent>
       </Select>
 
-      <Avatar>
-        {/* <AvatarImage src="/img/inst2.png" /> */}
+      {/* <Avatar>
+        <AvatarImage src="/img/inst2.png" />
         <AvatarFallback>AVT</AvatarFallback>
-      </Avatar>
+      </Avatar> */}
     </div>
   );
 }

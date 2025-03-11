@@ -39,20 +39,22 @@ export default function MonthViewBox({
       )}
       onClick={handleClick}
     >
-      <div className="flex flex-col items-center">
+      <div className="mt-1 flex flex-col items-center">
         {rowIndex === 0 && (
           <h4 className="text-xs text-gray-500">
             {day.format("ddd").toUpperCase()}
           </h4>
         )}
-        <h4
+        <div
           className={cn(
             "flex h-8 w-8 items-center justify-center rounded-full text-center text-sm",
-            isToday && "bg-blue-600 text-white",
+            isToday && "bg-primary text-white",
           )}
         >
-          {isFirstDayOfMonth ? day.format("MMM D") : day.format("D")}
-        </h4>
+          <p className="text-center">
+            {isFirstDayOfMonth ? day.format("MMM D") : day.format("D")}
+          </p>
+        </div>
       </div>
       <EventRenderer date={day} view="month" events={events} />
     </div>
