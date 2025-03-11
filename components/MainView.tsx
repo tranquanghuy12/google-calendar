@@ -31,7 +31,6 @@ export default function MainView({
     setEvents,
     isListEventOpen,
     closeListEvent,
-    events,
   } = useEventStore();
 
   const { userSelectedDate } = useDateStore();

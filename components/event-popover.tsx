@@ -119,7 +119,7 @@ export default function EventPopover({ onClose, date }: EventPopoverProps) {
           setSuccess(result.success);
           setTimeout(() => {
             onClose();
-          }, 2000);
+          }, 500);
         }
       } catch {
         setError("An unexpected error occurred. Please try again.");
@@ -237,7 +237,7 @@ export default function EventPopover({ onClose, date }: EventPopoverProps) {
             <div className="">
               <div className="flex items-center space-x-3 text-sm">
                 {" "}
-                <p>De Mawo</p>{" "}
+                <p>Tran Quang Huy</p>{" "}
                 <div className="h-4 w-4 rounded-full bg-violet-500"></div>{" "}
               </div>
               <div className="flex items-center space-x-1 text-xs">

@@ -34,7 +34,7 @@ export type RecurringRuleType = {
 
 type EventStore = {
   events: CalendarEventType[];
-  listEventOpen: CalendarEventType[];
+  listEventOpen: CalendarEventType[] | null;
   isPopoverOpen: boolean;
   isEventSummaryOpen: boolean;
   isListEventOpen: boolean;
@@ -102,7 +102,7 @@ export const useEventStore = create<EventStore>((set) => ({
     set({ isEventSummaryOpen: false, selectedEvent: null }),
   openListEvent: (events) =>
     set({ isListEventOpen: true, listEventOpen: events }),
-  closeListEvent: () => set({ isListEventOpen: false, selectedEvent: null }),
+  closeListEvent: () => set({ isListEventOpen: false, listEventOpen: null }),
 }));
 
 export const useToggleSideBarStore = create<ToggleSideBarType>()(

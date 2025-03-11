@@ -1,4 +1,4 @@
-import { getWeeks } from "@/lib/getTime";
+// import { getWeeks } from "@/lib/getTime";
 import { useDateStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import dayjs from "dayjs";
@@ -8,7 +8,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 export default function SideBarCalendar() {
   const { setMonth, selectedMonthIndex, twoDMonthArray } = useDateStore();
 
-  const weeksOfMonth = getWeeks(selectedMonthIndex);
+  // const weeksOfMonth = getWeeks(selectedMonthIndex);
 
   return (
     <div className="my-6 p-2">
@@ -31,7 +31,8 @@ export default function SideBarCalendar() {
       </div>
 
       {/* Header Row: Days of the Week */}
-      <div className="mt-2 grid grid-cols-[auto_1fr]">
+      {/* <div className="mt-2 grid grid-cols-[auto_1fr]"> */}
+      <div className="mt-2 grid">
         <div className="w-6"></div>
         <div className="grid grid-cols-7 text-xs">
           {["S", "M", "T", "W", "T", "F", "S"].map((day, i) => (
@@ -43,26 +44,26 @@ export default function SideBarCalendar() {
       </div>
 
       {/* Main Content: Weeks and Days */}
-      <div className="mt-2 grid grid-cols-[auto_1fr] text-xs">
+      <div className="mt-2 grid text-xs">
         {/* Week Number  column */}
-        <div className="grid w-6 grid-rows-5 gap-1 gap-y-3 rounded-sm bg-gray-100 p-1">
+        {/* <div className="grid w-6 grid-rows-5 gap-1 gap-y-3 rounded-sm bg-gray-100 p-1">
           {weeksOfMonth.map((week, i) => (
             <span key={i} className="flex h-5 w-5 items-center justify-center">
               {week}
             </span>
           ))}
-        </div>
+        </div> */}
 
         {/* Dates grid */}
 
-        <div className="grid grid-cols-7 grid-rows-5 gap-1 gap-y-3 rounded-sm p-1 text-xs">
+        <div className="grid grid-cols-7 grid-rows-5 gap-2 gap-y-3 rounded-sm p-1 text-xs">
           {twoDMonthArray.map((row, i) => (
             <Fragment key={i}>
               {row.map((day, index) => (
                 <button
                   key={index}
                   className={cn(
-                    "flex h-5 w-5 items-center justify-center rounded-full",
+                    "flex h-7 w-7 items-center justify-center rounded-full",
                     day.format("DD-MM-YY") === dayjs().format("DD-MM-YY") &&
                       "bg-blue-600 text-white",
                   )}

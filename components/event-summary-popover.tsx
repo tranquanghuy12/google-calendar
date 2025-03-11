@@ -5,8 +5,9 @@ import dayjs from "dayjs";
 import { Button } from "@/components/ui/button";
 import { IoCloseSharp } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
-import { CalendarEventType } from "@/lib/store";
+import { CalendarEventType, useEventStore } from "@/lib/store";
 import { deleteEvent } from "@/app/actions/event-actions";
+import { IoMdCalendar } from "react-icons/io";
 
 interface EventSummaryPopoverProps {
   isOpen: boolean;
@@ -20,6 +21,7 @@ export function EventSummaryPopover({
   event,
 }: EventSummaryPopoverProps) {
   const popoverRef = useRef<HTMLDivElement>(null);
+  const { listEventOpen, openListEvent } = useEventStore();
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -43,6 +45,9 @@ export function EventSummaryPopover({
   const handleDeleteEvent = useCallback(async () => {
     try {
       await deleteEvent(event?.id);
+      if (listEventOpen) {
+        openListEvent(listEventOpen.filter((e) => e?.id !== event?.id));
+      }
       setTimeout(() => {
         onClose();
       }, 200);
@@ -64,7 +69,7 @@ export function EventSummaryPopover({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-xl font-semibold">Event Summary</h2>
+          <h2 className="text-xl font-semibold"></h2>
           <div>
             <Button
               className="mr-2"
@@ -79,16 +84,25 @@ export function EventSummaryPopover({
             </Button>
           </div>
         </div>
-        <div className="space-y-2">
-          <p>
-            <strong>Title:</strong> {event.title}
-          </p>
-          {/* Format the date before displaying it */}
-          <p>
-            <strong>Date:</strong>{" "}
-            {dayjs(event.date).format("dddd, MMMM D, YYYY h:mm A")}
-          </p>
+        <div className="space-y-10">
+          <div className="flex gap-6">
+            <div className="flex w-6 justify-center">
+              <div className="mt-2 h-4 w-4 rounded-full bg-violet-500"></div>
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <div className="text-2xl">{event.title}</div>
+              <div className="text-md text-gray-600">
+                {dayjs(event.date).format("dddd, MMMM D, YYYY h:mm A")}
+              </div>
+            </div>
+          </div>
+
           {/* Add more event details here */}
+
+          <div className="flex items-center gap-6">
+            <IoMdCalendar className="h-6 w-6 text-gray-600" />
+            <div className="text-md text-gray-600">Tran Quang Huy</div>
+          </div>
         </div>
       </div>
     </div>

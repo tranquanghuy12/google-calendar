@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import dayjs from "dayjs";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -14,7 +15,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Google Calendar Clone",
+  title: "MasterBranch Test",
   description: "Making Scheduling possible",
 };
 
@@ -23,8 +24,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const todaysDate = dayjs();
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="icon"
+          href={`/img/calendar_${todaysDate.date().toString()}_2x.png`}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

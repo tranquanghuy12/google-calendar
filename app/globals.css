@@ -68,3 +68,7 @@
     margin-right: 0 !important;
   }
 }
+html,
+body {
+  scrollbar-width: none; /* Hide scrollbar */
+}
