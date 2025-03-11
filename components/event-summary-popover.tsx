@@ -22,6 +22,7 @@ export function EventSummaryPopover({
 }: EventSummaryPopoverProps) {
   const popoverRef = useRef<HTMLDivElement>(null);
   const { listEventOpen, openListEvent } = useEventStore();
+  console.log(listEventOpen);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -45,7 +46,7 @@ export function EventSummaryPopover({
   const handleDeleteEvent = useCallback(async () => {
     try {
       await deleteEvent(event?.id);
-      if (listEventOpen) {
+      if (listEventOpen && listEventOpen.length > 0) {
         openListEvent(listEventOpen.filter((e) => e?.id !== event?.id));
       }
       setTimeout(() => {
