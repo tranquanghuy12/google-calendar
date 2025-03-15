@@ -5,6 +5,7 @@ import { eventsTable, recurringEventsTable } from "@/db/schema";
 import { RecurringRuleType } from "@/lib/store";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import moment from "moment-timezone";
 
 // export async function createEvent(
 //   formData: FormData,
@@ -59,7 +60,8 @@ export async function createEvent(
     return { error: "All fields are required" };
   }
 
-  const dateTime = new Date(`${date}T${time}:00`);
+  // const dateTime = new Date(`${date}T${time}:00`);
+  const dateTime = moment.tz(`${date}T${time}:00`, "Asia/Ho_Chi_Minh").toDate();
 
   let recurringRuleId = null;
 
