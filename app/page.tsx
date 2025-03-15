@@ -70,7 +70,7 @@ const getEventsData = async () => {
     //   date: dayjs(event.date).toISOString(), // Convert Dayjs to string
     // }));
   } catch (error) {
-    console.error("Error fetching data from the database:", error);
+    console.error("Error fetching data from the database: ", error);
     return [];
   }
 };
