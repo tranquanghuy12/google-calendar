@@ -57,9 +57,9 @@ export default function SideBar() {
                         <div
                           className={`${event?.recurringRule ? "text-primary-soft" : "text-secondary-soft"} text-md text-gray-600`}
                         >
-                          {dayjs(event.date).format(
-                            "dddd, MMMM D, YYYY HH:mm A",
-                          )}
+                          {dayjs
+                            .tz(dayjs(event.date), "Asia/Ho_Chi_Minh")
+                            .format("dddd, MMMM D, YYYY HH:mm A")}
                         </div>
                       </div>
                     </div>

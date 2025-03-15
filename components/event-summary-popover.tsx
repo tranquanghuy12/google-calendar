@@ -92,7 +92,9 @@ export function EventSummaryPopover({
             <div className="flex flex-col gap-y-2">
               <div className="break-all text-2xl">{event.title}</div>
               <div className="text-md text-gray-600">
-                {dayjs(event.date).format("dddd, MMMM D, YYYY HH:mm A")}
+                {dayjs
+                  .tz(dayjs(event.date), "Asia/Ho_Chi_Minh")
+                  .format("dddd, MMMM D, YYYY HH:mm A")}
               </div>
             </div>
           </div>

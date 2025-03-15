@@ -63,7 +63,7 @@ export default function SideBarCalendar() {
                 <button
                   key={index}
                   className={cn(
-                    "flex h-7 w-10 items-center justify-center rounded-full",
+                    "flex h-10 w-10 items-center justify-center rounded-full",
                     day.format("DD-MM-YY") === dayjs().format("DD-MM-YY") &&
                       "bg-primary text-white",
                   )}
