@@ -59,7 +59,7 @@ export async function createEvent(
     return { error: "All fields are required" };
   }
 
-  const dateTime = new Date(`${date}T${time}:00`);
+  const dateTime = new Date(`${date}T${time}:00Z`);
 
   let recurringRuleId = null;
 
