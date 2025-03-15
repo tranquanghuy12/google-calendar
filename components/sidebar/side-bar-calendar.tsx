@@ -11,7 +11,7 @@ export default function SideBarCalendar() {
   // const weeksOfMonth = getWeeks(selectedMonthIndex);
 
   return (
-    <div className="mb-6 p-2">
+    <div className="mb-6 p-1">
       <div className="flex items-center justify-between">
         <h4 className="text-md font-semibold text-primary">
           {dayjs(new Date(dayjs().year(), selectedMonthIndex)).format(
@@ -63,7 +63,7 @@ export default function SideBarCalendar() {
                 <button
                   key={index}
                   className={cn(
-                    "flex h-7 w-7 items-center justify-center rounded-full",
+                    "flex h-7 w-10 items-center justify-center rounded-full",
                     day.format("DD-MM-YY") === dayjs().format("DD-MM-YY") &&
                       "bg-primary text-white",
                   )}
