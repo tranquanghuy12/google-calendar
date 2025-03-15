@@ -1,6 +1,10 @@
 import dayjs from "dayjs";
 import weekOfYear from "dayjs/plugin/weekOfYear";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 dayjs.extend(weekOfYear);
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export const isCurrentDay = (day: dayjs.Dayjs) => {
   return day.isSame(dayjs(), "day");
@@ -40,11 +44,9 @@ export const getHours = Array.from({ length: 24 }, (_, i) =>
   dayjs().startOf("day").add(i, "hour"),
 );
 
-
 // Function to generate weeks of the month dynamically
 
-
-export const getWeeks  = (monthIndex: number) => {
+export const getWeeks = (monthIndex: number) => {
   const year = dayjs().year();
   const firstDayOfMonth = dayjs(new Date(year, monthIndex, 1));
   const lastDayOfMonth = dayjs(new Date(year, monthIndex + 1, 0)); // Last day of the month
@@ -57,7 +59,7 @@ export const getWeeks  = (monthIndex: number) => {
     currentDay.isBefore(lastDayOfMonth) ||
     currentDay.isSame(lastDayOfMonth)
   ) {
-    const weekNumber = currentDay.week();   //This requires the WeekOfYear plugin to work as imported above
+    const weekNumber = currentDay.week(); //This requires the WeekOfYear plugin to work as imported above
     if (!weeks.includes(weekNumber)) {
       weeks.push(weekNumber);
     }
@@ -65,4 +67,4 @@ export const getWeeks  = (monthIndex: number) => {
   }
 
   return weeks;
-}
+};
