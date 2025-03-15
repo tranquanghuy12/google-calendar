@@ -93,7 +93,7 @@ export function EventSummaryPopover({
               <div className="break-all text-2xl">{event.title}</div>
               <div className="text-md text-gray-600">
                 {dayjs
-                  .tz(dayjs(event.date), "Asia/Ho_Chi_Minh")
+                  .tz(dayjs.utc(event.date), "Asia/Ho_Chi_Minh")
                   .format("dddd, MMMM D, YYYY HH:mm A")}
               </div>
             </div>
